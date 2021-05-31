@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tech News</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  </head>
+  <body>
+
+    <nav class="navbar is-dark">
+      <div class="navbar-brand">
+        <a href="/" class="navbar-item"> <strong>Tech News</strong> </a>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item">
+            <form class="" method="GET" action="{% url 'story:search' %}">
+              <div class="field has-addons">
+                <div class="control">
+                  <input type="text" class="input" placeholder="Search..." name="query" value="">
+                </div>
+                <div class="control">
+                  <button class="button is-success">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div class="navbar-end">
+          <a href="{% url 'story:newest' %}" class="navbar-item">Newest</a>
+          <a href="{% url 'story:submit' %}" class="navbar-item">Submit</a>
+          <div class="navbar-item">
+            <div class="buttons">
+              {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="button is-danger"> <strong>Logout</strong> </a>
+              {% else %}
+                <a href="{% url 'login' %}" class="button is-light"> <strong>Login</strong> </a>
+                <a href="{% url 'core:signup' %}" class="button is-success"> <strong>Sign up</strong> </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <section class="section">
+      {% block content %}
+
+      {% endblock %}
+    </section>
+
+  </body>
+</html>
